@@ -18,5 +18,8 @@
     <ClInclude Include="circular-buffer-array.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="circular-buffer.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
