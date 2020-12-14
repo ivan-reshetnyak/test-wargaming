@@ -18,5 +18,8 @@
     <ClCompile Include="circular-buffer-array-test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="circular-buffer-list-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

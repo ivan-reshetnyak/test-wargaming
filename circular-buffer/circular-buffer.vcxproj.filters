@@ -21,5 +21,8 @@
     <ClInclude Include="circular-buffer.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="circular-buffer-list.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

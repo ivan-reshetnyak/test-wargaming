@@ -4,18 +4,18 @@
 
 #include <CppUnitTest.h>
 
-#include "circular-buffer-array.h"
+#include "circular-buffer-list.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace circularbuffertest
 {
 
-TEST_CLASS(circularBufferArrayTest) {
+TEST_CLASS(circularBufferListTest) {
 public:
   TEST_METHOD(testConstructor) {
     try {
-      circular_buffer_array<int> buf(5);
+      circular_buffer_list<int> buf(5);
     } catch (std::exception) {
       // Something went terribly wrong if we're here
       Assert::Fail();
@@ -23,14 +23,14 @@ public:
   }
 
   TEST_METHOD(testSingleWR) {
-    circular_buffer_array<int> buf(5);
+    circular_buffer_list<int> buf(5);
     int toWrite = rand();
     buf.write(toWrite);
     Assert::AreEqual(toWrite, buf.read());
   }
 
   TEST_METHOD(testFullSizeWR) {
-    circular_buffer_array<int> buf(5);
+    circular_buffer_list<int> buf(5);
     std::array<int, 5> strip;
     for (int &it : strip)
       it = rand();
@@ -41,7 +41,7 @@ public:
   }
 
   TEST_METHOD(testLoopWR) {
-    circular_buffer_array<int> buf(5);
+    circular_buffer_list<int> buf(5);
     std::array<int, 10> strip;
     for (int &it : strip)
       it = rand();

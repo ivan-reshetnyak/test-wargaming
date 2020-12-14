@@ -139,6 +139,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="circular-buffer-array.h" />
+    <ClInclude Include="circular-buffer-list.h" />
     <ClInclude Include="circular-buffer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
