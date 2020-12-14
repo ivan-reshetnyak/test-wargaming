@@ -10,16 +10,7 @@ public:
   }
 
   ~circular_buffer_list() {
-    if (writePosition != nullptr) {
-      entry
-        *toDelete = writePosition,
-        *current = writePosition->next;
-      do {
-        delete toDelete;
-        toDelete = current;
-        current = current->next;
-      } while (current != writePosition);
-    }
+    clear();
   }
 
   void write( const data_type &what ) override {
@@ -34,15 +25,36 @@ public:
   }
 
   void resize( int newSize ) override {
-    circular_buffer<data_type>::size = newSize;
-    if (writePosition == nullptr)
+    if (newSize < circular_buffer<data_type>::size)
+      // Impossible to efficiently (or reliably) keep data
+      clear();
+
+    if (writePosition == nullptr) {
       writePosition = new entry;
-    for (int i = 1; i < newSize; ++i)
+      readPosition = writePosition;
+      circular_buffer<data_type>::size = 1;
+    }
+    for (int i = circular_buffer<data_type>::size; i < newSize; ++i)
       writePosition->extend(new entry());
-    readPosition = writePosition;
+    circular_buffer<data_type>::size = newSize;
   }
 
 private:
+  void clear() {
+    if (writePosition != nullptr) {
+      entry
+        *toDelete = writePosition,
+        *current = writePosition->next;
+      do {
+        delete toDelete;
+        toDelete = current;
+        current = current->next;
+      } while (current != writePosition);
+    }
+    circular_buffer<data_type>::size = 0;
+    readPosition = writePosition = nullptr;
+  }
+
   class entry {
   public:
     data_type data;
